@@ -104,11 +104,7 @@ button.addEventListener("click", e => {
                       <div class="card-content" id="avail${el["id"]}">
     
                       </div>
-                        <div class="card-action">
-                          <span class="card-title grey-text text-darken-4"><h3>${
-                            el["name"]
-                          }
-                      </div>
+                        
                     </div>
                   </div>
                 </div>
