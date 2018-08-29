@@ -16,6 +16,13 @@ body {
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
+.page-button {
+  padding: 0 17em;
+}
+.brand-logo {
+  margin-left: -0.5em;
+}
+
 .container {
   margin-top: 2em;
   background-color: #f53240;
@@ -54,4 +61,10 @@ input:after {
 
 .header {
   color: #f9be02;
+}
+
+/* GAME */
+
+#game {
+  display: none;
 }

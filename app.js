@@ -2,7 +2,6 @@ const searchKey = "A8zNBRQHWvmshP01cOHVZ3ef5Ej7p1AFI33jsnVUar81TT2UEf";
 const button = document.getElementById("button");
 const input = document.getElementById("search");
 const main = document.getElementById("main");
-const mainRow = document.querySelector(".main-row");
 
 button.addEventListener("click", e => {
   e.preventDefault();
@@ -132,4 +131,14 @@ button.addEventListener("click", e => {
       console.log(err);
     });
   input.value = "";
+});
+
+const game = document.getElementById("game");
+const gameButton = document.getElementById("game-button");
+const headerRow = document.querySelector(".header-row");
+gameButton.addEventListener("click", e => {
+  console.log(e);
+  headerRow.style.display = "none";
+  // main.style.position = "absolute";
+  // main.style.visibility = "hidden";
 });
