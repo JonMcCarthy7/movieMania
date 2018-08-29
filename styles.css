@@ -31,6 +31,7 @@ body {
   box-shadow: 1px 1px 10px 1px #000000;
   -webkit-border-radius: 52px 5px;
   border-radius: 52px 5px;
+  margin: 2em 2em;
 }
 .card {
   -webkit-box-shadow: 1px 1px 10px 1px #000000;
