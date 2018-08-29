@@ -2,10 +2,12 @@ const searchKey = "A8zNBRQHWvmshP01cOHVZ3ef5Ej7p1AFI33jsnVUar81TT2UEf";
 const button = document.getElementById("button");
 const input = document.getElementById("search");
 const main = document.getElementById("main");
+const mainRow = document.querySelector(".main-row");
 
 button.addEventListener("click", e => {
   e.preventDefault();
   main.innerHTML = "";
+  // mainRow.innerHTML = "";
   console.log(
     input.value
       .trim()
@@ -36,11 +38,11 @@ button.addEventListener("click", e => {
       const searchByTitle = `t=`;
       arr.forEach((el, i) => {
         if (i === 0) {
-          axios.get(`${URL}${searchByTitle}${title}`).then(res2 => {
+          axios.get(`${URL}${searchByTitle}${title}&plot=full`).then(res2 => {
             console.log("2nd CALL", res2.data);
 
             main.insertAdjacentHTML(
-              "beforeend",
+              "afterbegin",
               `
             <div class="row">
               <div class="col s12 m8 offset-m2">
@@ -49,13 +51,14 @@ button.addEventListener("click", e => {
                     <img class="activator" src=${el["picture"]}>
                     <span class="card-title">${el["name"]}</span>
                   </div>
-                  <div class="card-content activator" id="avail${el["id"]}">
+                  <div class="card-content" id="avail${el["id"]}">
 
                   </div>
                     <div class="card-reveal">
                       <span class="card-title grey-text text-darken-4"><h3>${
                         el["name"]
                       }<i class="material-icons right">close</i></h3></span>
+                      <p>Genre: ${res2.data.Genre}</p>
                       <p>Released: ${res2.data.Released}</p>
                       <p>Run Time: ${res2.data.Runtime}</p>
                       <p>Rated: ${res2.data.Rated}</p>
@@ -63,7 +66,7 @@ button.addEventListener("click", e => {
                       <p>Awards: ${res2.data.Awards}</p>
                       <p>Director: ${res2.data.Director}</p>
                       <br>
-                      <p>Plot: ${res2.data.Plot}</p>
+                      <h6>Plot: ${res2.data.Plot}</h6>
                   </div>
                 </div>
               </div>
@@ -71,48 +74,62 @@ button.addEventListener("click", e => {
 
           `
             );
-          });
-        }
-        main.insertAdjacentHTML(
-          "beforeend",
-          `
-              <div class="row">
-                <div class="col s12 m8 offset-m2">
-                  <div class="card">
-                    <div class="card-image waves-effect waves-block waves-light">
-                      <img class="activator" src=${el["picture"]}>
-                      <span class="card-title">${el["name"]}</span>
-                    </div>
-                    <div class="card-content activator" id="avail${el["id"]}">
-  
-                    </div>
-                      <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4"><h3>${
-                          el["name"]
-                        }<i class="material-icons right">close</i></h3></span>
-                        <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-  
-            `
-        );
+            let avail = document.getElementById(`avail${el["id"]}`);
+            el.locations.forEach(loc => {
+              console.log(loc);
 
-        let avail = document.getElementById(`avail${el["id"]}`);
-        el.locations.forEach(loc => {
-          console.log(loc);
-
-          avail.insertAdjacentHTML(
-            "beforeend",
-            `
+              avail.insertAdjacentHTML(
+                "beforeend",
+                `
             <span><img class="materialboxed" width="150" src=${
               loc["icon"]
             } alt="${el["name"]}"></span>
 
           `
+              );
+            });
+          });
+        }
+        if (i !== 0) {
+          main.insertAdjacentHTML(
+            "beforeend",
+            `
+                <div class="row">
+                  <div class="col s12 m8 offset-m2">
+                    <div class="card">
+                      <div class="card-image waves-effect waves-block waves-light">
+                        <img src=${el["picture"]}>
+                        <span class="card-title">${el["name"]}</span>
+                      </div>
+                      <div class="card-content" id="avail${el["id"]}">
+    
+                      </div>
+                        <div class="card-action">
+                          <span class="card-title grey-text text-darken-4"><h3>${
+                            el["name"]
+                          }
+                      </div>
+                    </div>
+                  </div>
+                </div>
+    
+              `
           );
-        });
+          let avail = document.getElementById(`avail${el["id"]}`);
+          el.locations.forEach(loc => {
+            console.log(loc);
+
+            avail.insertAdjacentHTML(
+              "beforeend",
+              `
+            <span><img class="materialboxed" width="150" src=${
+              loc["icon"]
+            } alt="${el["name"]}"></span>
+
+          `
+            );
+          });
+        }
       });
     })
     .catch(err => {
