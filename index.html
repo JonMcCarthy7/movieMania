@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="./app.js" defer></script>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Mukta" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+  <title>Movie Mania</title>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col s12 m12">
+        <div class="card horizontal">
+          <div class="card-stacked">
+            <div class="card-content">
+              <h5 class="header center-align">Serach what's available on Netflix, Amazon Prime, Amazon Instant, or iTunes.</h5>
+            </div>
+            <div class="card-action">
+              <div class="col s12 m7 offset-m1">
+                <div class="input-field">
+                  <input placeholder="Search a Movie or Tv Show" id="search" type="text" class="validate">
+                </div>
+              </div>
+              <div class="s12 m5 center-align">
+                <button class="btn-small waves-effect waves-light center-align" id="button" type="submit">Send it
+                </button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div id="main">
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</body>
+
+</html>

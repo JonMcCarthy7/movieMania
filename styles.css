@@ -1,0 +1,43 @@
+body {
+  font-family: "Mukta", sans-serif;
+  background-color: #02c8a7;
+}
+
+.container {
+  margin-top: 2em;
+  background-color: #f53240;
+  -webkit-box-shadow: 1px 1px 10px 1px #000000;
+  box-shadow: 1px 1px 10px 1px #000000;
+  -webkit-border-radius: 52px 5px;
+  border-radius: 52px 5px;
+}
+
+.horizontal {
+  background-color: #7cdbd5;
+  -webkit-box-shadow: 1px 1px 10px 1px #000000;
+  box-shadow: 1px 1px 10px 1px #000000;
+  -webkit-border-radius: 52px 5px;
+  border-radius: 52px 5px;
+}
+.card {
+  -webkit-box-shadow: 1px 1px 10px 1px #000000;
+  box-shadow: 1px 1px 10px 1px #000000;
+}
+
+#button {
+  margin: 2em 0 0em 5em;
+  background-color: #f9be02;
+}
+input:focus,
+input:active,
+input:after {
+  color: #f9be02;
+  border-bottom: 1px solid #f9be02 !important;
+  -webkit-box-shadow: 0 1px 0 0 #f9be02;
+  -moz-box-shadow: 0 1px 0 0 #f9be02;
+  box-shadow: 0 1px 0 0 #f9be02 !important;
+}
+
+.header {
+  color: #f9be02;
+}
