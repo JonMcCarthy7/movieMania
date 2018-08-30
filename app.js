@@ -133,12 +133,109 @@ button.addEventListener("click", e => {
   input.value = "";
 });
 
+const pageButtons = document.querySelectorAll(".page-button");
+const searchPage = document.getElementById("search-page");
+const gamePage = document.getElementById("game-page");
+const startGame = document.getElementById("button2");
+const guessSection = document.getElementById("guess-section");
 const game = document.getElementById("game");
-const gameButton = document.getElementById("game-button");
-const headerRow = document.querySelector(".header-row");
-gameButton.addEventListener("click", e => {
-  console.log(e);
-  headerRow.style.display = "none";
-  // main.style.position = "absolute";
-  // main.style.visibility = "hidden";
+const buttonGuess = document.getElementById("button-guess");
+const guess = document.getElementById("guess");
+let count = 0;
+
+pageButtons.forEach(el => {
+  el.addEventListener("click", e => {
+    if (e.target.innerHTML === "Search") {
+      searchPage.classList.remove("hide");
+      gamePage.classList.add("hide");
+      game.innerHTML = "";
+    } else if (e.target.innerHTML === "Game") {
+      gamePage.classList.remove("hide");
+      searchPage.classList.add("hide");
+      main.innerHTML = "";
+    }
+  });
+});
+
+startGame.addEventListener("click", e => {
+  startGame.classList.toggle("hide");
+  guessSection.classList.toggle("hide");
+
+  axios
+    .get(
+      `https://andruxnet-random-famous-quotes.p.mashape.com/?cat=movies&count=10`,
+      {
+        headers: {
+          "X-Mashape-Key": `${searchKey}`
+        }
+      }
+    )
+    .then(res => {
+      console.log(res.data);
+      const gameArr = res.data;
+      game.insertAdjacentHTML(
+        "beforeend",
+        `
+        <div class="col s12 m12">
+          <div class="horizontal purple accent-4">
+            <div class="card-content">
+            <br>
+              <h5 class="header center-align">Question</h5>
+            </div>
+            <div class="card-action">
+              <div class="s12 m5 center-align question${count}">
+                <h4>${gameArr[0].quote}</h4>
+                <br>
+              </div>
+            </div>
+          </div>
+        </div>
+  `
+      );
+      let question = document.querySelector(`.question${count}`);
+      let playerOneScore = 0;
+      let playerTwoScore = 0;
+
+      buttonGuess.addEventListener("click", e => {
+        console.log(guess.value);
+        if (count % 2 === 0) {
+          console.log(guess.value.toLowerCase().trim());
+          console.log(gameArr[count].author);
+          count++;
+          if (
+            guess.value.toLowerCase().trim() ==
+            gameArr[count].author.toLowerCase()
+          ) {
+            ++playerOneScore;
+          }
+        } else if (count % 2 !== 0) {
+          if (
+            guess.value.toLowerCase().trim() ==
+            gameArr[count].author.toLowerCase()
+          ) {
+            ++playerTwoScore;
+          }
+          count++;
+        }
+
+        if (guess.value && count !== 10) {
+          question.innerHTML = `<h4>${gameArr[count].quote}</h4> <br>`;
+          // document.querySelector(
+          //   "#question-header"
+          // ).innerHTML = `Question ${count}`;
+          // guess.value = "";
+        }
+        if (count === 10) {
+          if (playerOneScore > playerTwoScore) {
+            question.innerHTML = `<h4>Player one wins with a score of ${playerOneScore}</h4> <br>`;
+          } else if (playerOneScore < playerTwoScore) {
+            question.innerHTML = `<h4>Player two wins with a score of ${playerTwoScore}</h4> <br>`;
+          } else {
+            question.innerHTML = `<h4>The game was a tie!</h4> <br>`;
+          }
+        }
+        console.log(playerOneScore);
+        console.log(playerTwoScore);
+      });
+    });
 });

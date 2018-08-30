@@ -19,15 +19,17 @@
     <div class="nav-wrapper">
       <a href="#" class="left page-button">Search</a>
       <a href="#!" class="brand-logo center">Movie Mania</a>
-      <a href="#" id="game-button" class="right page-button">Game</a>
+      <a href="#" class="right page-button">Game</a>
     </div>
   </nav>
 
 
   <div class="container">
-    <div class="row header-row">
+    <div class="row">
       <div class="col s12 m12">
-        <div class="card horizontal">
+
+        <!-- SEARCH PAGE -->
+        <div id="search-page" class="card horizontal">
           <div class="card-stacked">
             <div class="card-content">
               <h5 class="header center-align">Serach what's available on Netflix, Amazon Prime, Amazon Instant, or iTunes.</h5>
@@ -46,7 +48,38 @@
             </div>
           </div>
         </div>
+
+        <!-- GAME PAGE -->
+        <div id="game-page" class="hide card horizontal">
+
+          <div class="card-stacked">
+            <div class="card-content">
+              <h5 class="header center-align">Movie-Quote-Mania</h5>
+              <p class="header center-align">A game where two players take turns guessing what movie a quote is from.</p>
+            </div>
+            <div class="card-action">
+              <div class="s12 m5 center-align">
+                <button class="btn-small waves-effect waves-light center-align" id="button2" type="submit">Start Game!
+                </button>
+                <div id="guess-section" class="hide">
+                  <div class="col s12 m7 offset-m1">
+                    <div class="input-field">
+                      <input placeholder="Enter Movie Guess" id="guess" type="text" class="validate">
+                    </div>
+                  </div>
+                  <div class="s12 m5 center-align">
+                    <button class="btn-small waves-effect waves-light center-align" id="button-guess" type="submit">Send
+                      it
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
+
     </div>
     <div class="row">
       <div id="main">
