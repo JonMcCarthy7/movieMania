@@ -183,7 +183,7 @@ startGame.addEventListener("click", e => {
               <h5 class="header center-align">Question</h5>
             </div>
             <div class="card-action">
-              <div class="s12 m5 center-align question${count}">
+              <div class="s12 m5 center-align question">
                 <h4>${gameArr[0].quote}</h4>
                 <br>
               </div>
@@ -192,40 +192,47 @@ startGame.addEventListener("click", e => {
         </div>
   `
       );
-      let question = document.querySelector(`.question${count}`);
+      let question = document.querySelector(`.question`);
       let playerOneScore = 0;
       let playerTwoScore = 0;
 
       buttonGuess.addEventListener("click", e => {
-        console.log(guess.value);
-        if (count % 2 === 0) {
-          console.log(guess.value.toLowerCase().trim());
-          console.log(gameArr[count].author);
-          count++;
-          if (
-            guess.value.toLowerCase().trim() ==
-            gameArr[count].author.toLowerCase()
-          ) {
-            ++playerOneScore;
+        if (guess.value) {
+          console.log(count);
+
+          console.log(count);
+          if (count % 2 === 0) {
+            console.log(guess.value.toLowerCase().trim());
+            console.log(gameArr[count].author);
+            if (
+              guess.value.toLowerCase().trim() ==
+              gameArr[count].author.toLowerCase()
+            ) {
+              playerOneScore++;
+            }
+
+            guess.value = "";
+            guess.placeholder = "Player 2's turn";
+          } else if (count % 2 !== 0) {
+            if (
+              guess.value.toLowerCase().trim() ==
+              gameArr[count].author.toLowerCase()
+            ) {
+              playerTwoScore++;
+            }
+
+            guess.value = "";
+            guess.placeholder = "Player 1's turn";
           }
-        } else if (count % 2 !== 0) {
-          if (
-            guess.value.toLowerCase().trim() ==
-            gameArr[count].author.toLowerCase()
-          ) {
-            ++playerTwoScore;
-          }
-          count++;
+          ++count;
         }
 
-        if (guess.value && count !== 10) {
+        if (count !== 10) {
           question.innerHTML = `<h4>${gameArr[count].quote}</h4> <br>`;
-          // document.querySelector(
-          //   "#question-header"
-          // ).innerHTML = `Question ${count}`;
-          // guess.value = "";
         }
         if (count === 10) {
+          guess.value = "";
+          guess.placeholder = "Game Over!";
           if (playerOneScore > playerTwoScore) {
             question.innerHTML = `<h4>Player one wins with a score of ${playerOneScore}</h4> <br>`;
           } else if (playerOneScore < playerTwoScore) {
@@ -234,8 +241,8 @@ startGame.addEventListener("click", e => {
             question.innerHTML = `<h4>The game was a tie!</h4> <br>`;
           }
         }
-        console.log(playerOneScore);
-        console.log(playerTwoScore);
+        console.log("Player 1", playerOneScore);
+        console.log("Player 2", playerTwoScore);
       });
     });
 });
